@@ -39,7 +39,6 @@ def run_model(params: dict) -> dict:
         match = re.match(r"wrfout_d01_2009-05-(\d\d)_(\d\d)", file)
         if match != None:   
             time = int(match.group(2)) if match.group(1) == '06' else int(match.group(2))+24 
-            print(file, time)  
             if time < 12 or time > 27:
                 continue
             

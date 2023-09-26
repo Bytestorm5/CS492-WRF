@@ -11,7 +11,8 @@ dim_qs = Integer(low=50, high=200, name='qs')
 dimensions = [dim_qh, dim_qhl, dim_qs]
 
 @use_named_args(dimensions=dimensions)
-def evaluate(**params):       
+def evaluate(**params):     
+    print("\n--- EVALUATING CURRENT RESULTS ---")  
     gt = Controller.get_true_data()
     pred = Controller.run_model(params)
 
@@ -20,7 +21,7 @@ def evaluate(**params):
     for pred_t, pred_val in pred.items():
         SE += (pred_val - gt[pred_t]) ** 2
     MSE = SE / len(pred.keys())
-    
+    print(f"--- MSE: {MSE} ---\n")
     return MSE
 
 def optimize(iterations=10, rng_seed=123) -> tuple[list, float]:
