@@ -1,0 +1,53 @@
+ &time_control
+ start_year                          = 2009,
+ start_month                         = 05,
+ start_day                           = 06,
+ start_hour                          = 00,
+ end_year                            = 2009,
+ end_month                           = 05,
+ end_day                             = 07,
+ end_hour                            = 12,
+ interval_seconds                    = 21600
+ history_interval                    = 60,
+ frames_per_outfile                  = 1,
+ restart                             = .false.,
+ restart_interval                    = 7200,
+ /
+
+ &domains
+ time_step                           = 1,
+ e_we                                = 100,
+ e_sn                                = 81,
+ e_vert                              = 45,
+ dx                                  = 498.853333,
+ dy                                  = 498.853333,
+ smooth_option                       = 0,
+ dzstretch_s                         = 1.1
+ sfcp_to_sfcp                        = .true.
+ /
+
+ &physics
+ physics_suite                       = 'CONUS'
+ mp_physics                          = 19,
+ nssl_rho_qh                         = {qh},
+ nssl_rho_qhl                        = {qhl},
+ nssl_rho_qs                         = {qs},
+ radt                                = 15,
+ fractional_seaice                   = 1,
+ 
+ /
+
+ &dynamics
+ w_damping                           = 0,
+ diff_opt                            = 2,
+ km_opt                              = 4,
+ damp_opt                            = 3,
+ gwd_opt                             = 1,
+ /
+
+ &bdy_control
+ specified                           = .true.
+ /
+
+ &namelist_quilt
+ /
