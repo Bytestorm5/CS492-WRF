@@ -21,6 +21,7 @@ def evaluate(**params):
     for pred_t, pred_val in pred.items():
         SE += (pred_val - gt[pred_t]) ** 2
     MSE = SE / len(pred.keys())
+    print(params)
     print(f"--- MSE: {MSE} ---\n")
     return MSE
 
@@ -29,6 +30,6 @@ def optimize(iterations=10, rng_seed=123) -> tuple[list, float]:
     return result['x'], result['fun']
 
 if __name__ == "__main__":
-    param_result, eval = optimize(iterations=25, rng_seed=5)
+    param_result, eval = optimize(iterations=10, rng_seed=5)
     print("BEST PARAMS:", param_result)
     print("EVAL:", eval)
