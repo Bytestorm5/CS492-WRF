@@ -51,10 +51,11 @@
  /
 
  &physics
+ physics_suite                       = 'CONUS'
  mp_physics                          = 28,
  cu_physics                          = 6,
- ra_lw_physics                       = 24, 
- ra_sw_physics                       = 24,
+ ra_lw_physics                       = 14, 
+ ra_sw_physics                       = 14,
  bl_pbl_physics                      = 2,
  sf_sfclay_physics                   = 2,
  sf_surface_physics                  = 2,
@@ -65,8 +66,8 @@
  num_land_cat                        = 21,
  sf_urban_physics                    = 0, 
  dispers                             = 1,
- vdis                                = {vdis},
- beta_con                            = {beta_con}
+ vdis                                = .3,
+ beta_con                            = 1.0E24,
  /
 
  &fdda

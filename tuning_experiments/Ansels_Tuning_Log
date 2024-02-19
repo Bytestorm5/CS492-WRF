@@ -1,0 +1,33 @@
+
+2/15/24
+    Base run is result of capstone I work. At default values.
+        SWDOWN is nonreactive
+        SWDIR/DIF are zero
+
+    Experimenting with different rad schemes
+        14/14 is stable from base
+        
+        Disabling suite
+        Enabling 14/4 using older rrtmg for shortwave.
+            Attempting to re-run 100x
+                Failed
+        Attempting 1/1 100x
+            Failed
+        Attempting 4/4 100x
+            Failed
+        Attempting 24/24 GPU enabled RRTMG on machine with no GPU 100x
+            Not immediately failing
+            Failed 1x
+            GOT ACTUAL output
+            
+    Attempting BO w/ 24/24
+        Still not enough variation for purposes
+        DIR/DIF are no longer 0
+        Steep dropoff after solar zenith? Investigating source
+    FOR ALL FUTURE RUNS SHIFTING TO SW/LW 24/24
+
+2/17/24
+    Attempting shifting radt
+        Explored from 10 - 20
+        No significant reaction.
+    
