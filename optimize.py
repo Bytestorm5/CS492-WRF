@@ -6,7 +6,7 @@ from skopt.utils import use_named_args
 from skopt.space import Real, Integer, Categorical
 import matplotlib.pyplot as plt
 import os
-
+from typing import Callable
 
 dim_vdis     = Real(low=.01, high=1.40, name='vdis')
 dim_beta_con = Real(low=1e+20, high=1e+24, name='beta_con', prior='log-uniform')
@@ -65,6 +65,33 @@ def kiefer_wolfowitz1d(iterations = 10, seed = 123):
     if "Kiefer_Wolfowitz1D" not in os.listdir():
         os.mkdir("Kiefer_Wolfowitz1D")
     return {'func_vals': np.array(func_vals), 'fun': best_fun, 'x': best_x}
+
+
+def rmsprop(evaluate: Callable, num_iterations=1000, lr=0.01, beta=0.9, epsilon=1e-8):
+    global dimensions
+    def clip_params(params, dims):
+        # Clip parameters to stay within the bounds defined by dimensions
+        for i, dim in enumerate(dims):
+            params[i] = np.clip(params[i], dim.low, dim.high)
+        return params
+    # Initialize parameters within the bounds
+    params = np.array([dim.rvs for dim in dimensions])
+
+    moving_avg_sq_grad = np.zeros(len(dimensions))
+
+    loss = []
+    
+    for iteration in range(num_iterations):
+        MSE = evaluate(params)
+        loss.append(MSE)
+        gradients = np.gradient(MSE)
+        
+        moving_avg_sq_grad = beta * moving_avg_sq_grad + (1 - beta) * (gradients ** 2)
+        params -= (lr / (np.sqrt(moving_avg_sq_grad) + epsilon)) * gradients
+        params = clip_params(params, dimensions)
+
+
+        return {'func_vals': np.array(loss), 'fun': loss[-1], 'x': params}
 
 
 def optimize(strategy, iterations = 10, seed=5):
